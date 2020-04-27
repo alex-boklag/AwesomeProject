@@ -7,6 +7,7 @@ export const Layout = props => {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
+      paddingTop: 5
     },
   });
 
