@@ -3,9 +3,10 @@ import {useDispatch} from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import {View} from 'react-native';
 import {Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Layout} from '../components/Layout';
 import {saveImage} from '../actions/imagesActions';
+import {NavigationEvents} from 'react-navigation';
 
 export default function UploadPhoto() {
   const dispatch = useDispatch();
@@ -50,7 +51,17 @@ export default function UploadPhoto() {
   return (
     <Layout>
       <View>
-        <Button title="Choose File" onPress={() => chooseFile()} />
+        <Button
+          buttonStyle={{
+            backgroundColor: '#6495ed',
+            borderRadius: 100,
+            height: 100,
+            width: 100,
+          }}
+          iconRight
+          title="Choose File"
+          onPress={() => chooseFile()}
+        />
       </View>
     </Layout>
   );
