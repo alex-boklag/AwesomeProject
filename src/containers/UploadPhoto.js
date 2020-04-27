@@ -1,14 +1,17 @@
 import React from 'react';
 import {useDispatch} from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
-import {StyleSheet, Button, View, PermissionsAndroid} from 'react-native';
-import {addImage} from '../actions';
+import {View} from 'react-native';
+import {Button} from 'react-native-elements';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {Layout} from '../components/Layout';
+import {saveImage} from '../actions/imagesActions';
 
 export default function UploadPhoto() {
   const dispatch = useDispatch();
 
   const chooseFile = () => {
-    var options = {
+    const options = {
       title: 'Select Image',
       storageOptions: {
         skipBackup: true,
@@ -24,15 +27,20 @@ export default function UploadPhoto() {
         console.log('User tapped custom button: ', response.customButton);
         alert(response.customButton);
       } else {
-        const d = new Date(response.timestamp || new Date());
+        const d = new Date();
+
+        const minutes =
+          d.getMinutes() > 9 ? d.getMinutes() : `0${d.getMinutes()}`;
+        const hours = d.getHours() > 9 ? d.getHours() : `0${d.getHours()}`;
         const date = d.getDate() > 9 ? d.getDate() : `0${d.getDate()}`;
         const month =
           d.getMonth() > 9 ? d.getMonth() + 1 : `0${d.getMonth() + 1}`;
 
         dispatch(
-          addImage({
+          saveImage({
+            id: d,
             uri: response.uri,
-            date: `${date}.${month}.${d.getFullYear()}`,
+            date: `${date}.${month}.${d.getFullYear()} at ${hours}:${minutes}`,
           }),
         );
       }
@@ -40,16 +48,10 @@ export default function UploadPhoto() {
   };
 
   return (
-    <View style={style.container}>
-      <Button title="Choose File" onPress={() => chooseFile()} />
-    </View>
+    <Layout>
+      <View>
+        <Button title="Choose File" onPress={() => chooseFile()} />
+      </View>
+    </Layout>
   );
 }
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
