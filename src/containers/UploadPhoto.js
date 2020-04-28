@@ -3,10 +3,8 @@ import {useDispatch} from 'react-redux';
 import ImagePicker from 'react-native-image-picker';
 import {View} from 'react-native';
 import {Button} from 'react-native-elements';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {Layout} from '../components/Layout';
 import {saveImage} from '../actions/imagesActions';
-import {NavigationEvents} from 'react-navigation';
 
 export default function UploadPhoto() {
   const dispatch = useDispatch();
@@ -30,9 +28,6 @@ export default function UploadPhoto() {
       } else {
         const d = new Date();
 
-        const minutes =
-          d.getMinutes() > 9 ? d.getMinutes() : `0${d.getMinutes()}`;
-        const hours = d.getHours() > 9 ? d.getHours() : `0${d.getHours()}`;
         const date = d.getDate() > 9 ? d.getDate() : `0${d.getDate()}`;
         const month =
           d.getMonth() > 9 ? d.getMonth() + 1 : `0${d.getMonth() + 1}`;
@@ -41,7 +36,7 @@ export default function UploadPhoto() {
           saveImage({
             id: d,
             uri: response.uri,
-            date: `${date}.${month}.${d.getFullYear()} at ${hours}:${minutes}`,
+            date: `${date}.${month}.${d.getFullYear()}`,
           }),
         );
       }
