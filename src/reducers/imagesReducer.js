@@ -12,7 +12,7 @@ const imagesReducer = (state = {images: []}, action) => {
     case SAVE_IMAGE:
       return {
         ...state,
-        images: [...state.images, payload],
+        images: [payload, ...state.images],
       };
     default:
       return state;
