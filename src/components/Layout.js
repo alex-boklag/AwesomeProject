@@ -8,7 +8,7 @@ export const Layout = props => {
       justifyContent: 'center',
       alignItems: 'center',
       paddingTop: 5,
-      paddingHorizontal: 5
+      paddingHorizontal: 5,
     },
   });
 
