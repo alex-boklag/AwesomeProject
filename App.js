@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/FontAwesome5';
 import SplashScreen from 'react-native-splash-screen';
 import Gallery from './src/containers/Gallery';
 import UploadPhoto from './src/containers/UploadPhoto';
@@ -27,9 +27,9 @@ export default function App() {
           name="Upload photo"
           component={UploadPhoto}
           options={{
-            tabBarLabel: 'Upload photo',
+            tabBarLabel: 'Upload Photo',
             tabBarIcon: ({color, size}) => (
-              <FontAwesome5 name="file-upload" color={color} size={size} />
+              <Icon name="file-upload" color={color} size={size} />
             ),
           }}
         />
@@ -39,7 +39,7 @@ export default function App() {
           options={{
             tabBarLabel: 'Gallery',
             tabBarIcon: ({color, size}) => (
-              <FontAwesome5 name="images" color={color} size={size} />
+              <Icon name="images" color={color} size={size} />
             ),
           }}
         />
